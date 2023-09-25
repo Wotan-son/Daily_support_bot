@@ -27,9 +27,9 @@ MESSAGE_2 = [
     'В твоих глазах бескрайний космос!'
 ]
 
-secret_chat = os.getenv('TO_CHAT')
-secret_token = os.getenv('TOKEN') 
-bot = telebot.TeleBot(secret_token)
+TO_CHAT = os.getenv('TO_CHAT')
+TOKEN= os.getenv('TOKEN') 
+bot = telebot.TeleBot(TOKEN)
 
 def get_new_image():
     try:
@@ -74,7 +74,7 @@ def get_text_messages(message):
         txt_2 = random.choice(MESSAGE)
         bot.send_message(message.from_user.id, txt_2)
     elif message.text == 'Хочу кофе/чай/*на ручки*':
-        bot.forward_message(secret_chat, message.chat.id, message.message_id)
+        bot.forward_message(TO_CHAT, message.chat.id, message.message_id)
         bot.send_message(message.from_user.id, 'Отправил сообщение Славе')
     elif message.text == 'Время для котиков':
         photo = get_new_image()
